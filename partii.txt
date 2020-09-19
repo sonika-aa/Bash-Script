@@ -1,0 +1,315 @@
+#!/bin/bash
+num=1
+secretkey=lima
+Answer="ENG"
+key=nokey
+UserPChoice=choice
+echo "Enter secret key:"
+read -s key
+
+if [ "$1" == "" ] || [ "$2" == "" ]
+then
+    exit
+fi
+
+if [ "$1" == "sonika" ] && [ "$2" == "18030062" ]
+then
+
+while [ "$key" != "$secretkey" ] && [ "$num" -le 5 ]
+do
+	echo "Give a valid secret key."
+	read -s key
+	
+	num=`expr $num + 1`
+done
+
+if [ "$key" == "$secretkey" ] && [ "$num" -le 5 ]; then
+	echo "-------Welcome-------------"
+	echo -e "$2" "$1" date and time: "$(date)"	
+	Program_Repeat="yes"
+	while [ "$Program_Repeat" = "yes" ]
+	do
+		Country_Code() {
+			# When the user enters ENG then it informs about ENG and breaks the program.
+			# otherwise if the user enters another code then it asks to guess it again till the user gives correct country code.
+			user="choosen"
+				echo "Country Code"
+				echo "---------------------------------"
+				echo -e "\nAustralia \t\t AUS "
+				echo -e "\nBangladesh \t\t BAN"
+				echo -e "\nNepal \t\t\t NEP"
+				echo -e "\nIndia \t\t\t IND"
+				echo -e "\nEngland \t\t ENG"
+			while [ "$user" != "$Answer" ]
+			do
+	
+				echo "Enter the best cricket team : "
+				read user
+		
+				case "$user" in
+					"AUS") echo "No, it is not correct"; continue	
+					;;
+
+					"BAN") echo "No, it is not correct"; continue
+					;;
+
+
+					"NEP") echo "No, it is not correct"; continue
+					;;
+
+					"IND") echo "No, it is not correct"; continue
+					
+					;;
+
+					"ENG") echo "Yes, you are correct"; 
+					
+					echo -e "England is one of the best criket team in the world.\n England won the match in year 2019.\n England also won both matches against australia and west indies when they played one day matches at lord's.";break
+					;;					
+					*)
+					echo "!!Invalid Code!! \n Please select code as mentioned above:"
+				esac
+			done
+		}
+		#Country_code function
+		Country_Code	
+
+		Player_Code(){
+			echo -e "\t\n\n*********Players**********"
+			echo -e "\nPlayer Code"
+			echo -e "----------------------------------"
+			echo -e "\nParas Khadka \t\t PK"
+			echo -e "\nVirat Kholi \t\t VK"
+			echo -e "\nDavid Warner \t\t DW"
+			echo -e "\nBen stokes \t\t BS"
+			echo -e "\nRoss Taylor \t\t RT"
+			echo "------------------------------------"
+		
+			#right code or incorrect code
+			while choice="invalid";
+			do
+				echo "choose any three players: "
+				read  code_one code_two code_three
+			if [[ $code_one  != $code_two || $code_one  != $code_three || $code_two != $code_three ]]; then
+				case $code_one in
+					"PK") 
+					
+					;;
+					"VK")
+					
+					;;
+					"DW")
+					
+					;;
+					"BS")
+					
+					;;
+					"RT")
+					
+					;;
+
+					*) echo "Invalid, Please try again"
+					choice="invalid"
+					continue
+					;;
+
+				esac
+				
+				case $code_two in
+					"PK") 
+					
+					
+					;;
+					"VK")
+					
+					
+					;;
+					"DW")
+				
+					;;
+					"BS")
+					
+					;;
+					"RT")
+					
+					;;
+					
+
+					*) echo "Invalid, Please try again"
+					choice="invalid"
+					continue
+					;;
+					
+				esac
+
+				case $code_three in
+					"PK") 
+					break
+					
+					;;
+					"VK")
+					break
+					;;
+					"DW")
+					break
+					
+					;;
+					"BS")
+					break
+					;;
+					"RT")
+					break
+					;;
+					
+
+					*) echo "Invalid, Please try again"
+					choice="invalid"
+					continue
+					;;
+
+					
+				esac
+				else
+				echo "please enter another value"
+			fi		
+				
+			done
+		}
+		#Player_Code function
+		Player_Code
+	
+		menu_players(){
+		
+			#The user have to choose and it will show the information about players.
+			Pn="enter a player number that can be (1 2 3): "
+			playernumbers=("$code_one" "$code_two" "$code_three")
+			select player in "${playernumbers[@]}"
+			do
+
+				case $player in
+					"$code_one")
+						case $code_one in
+							"PK")
+							echo "The file is absent."
+							Country_Code
+                                                        Player_Code
+							menu_players
+							;;
+							
+							
+
+							"VK") cat VK
+						
+							;;
+
+							"DW") cat DW
+							;;
+
+							"BS") cat BS
+							;;
+
+
+							"RT")  
+							Country_Code
+                                                        Player_Code
+							menu_players
+
+							;;
+
+							
+			
+						esac
+						break
+
+					;;
+					"$code_two")
+						case $code_two in
+							"PK")
+							Country_Code
+                                                        Player_Code
+							menu_players
+							echo "The file is absent."
+							;;
+							
+							
+
+							"VK") cat VK
+						
+							;;
+
+							"DW") cat DW
+							;;
+
+							"BS") cat BS
+							;;
+
+
+							"RT")  
+							Country_Code
+                                                        Player_Code
+							menu_players
+
+							;;
+
+
+						esac
+						break
+					;;
+					"$code_three")
+						case $code_three in
+							"PK")
+							echo "The file is absent."
+							Country_Code
+                                                        Player_Code
+							menu_players
+							;;
+							
+							
+
+							"VK") cat VK
+						
+							;;
+
+							"DW") cat DW
+							;;
+
+							"BS") cat BS
+							;;
+
+
+							"RT")  
+                                                   
+							Country_Code
+                                                        Player_Code
+							menu_players
+
+							;;
+
+
+						esac
+						break
+					;;
+					*) echo "NOT VALID"
+					continue
+					;;
+				esac
+		
+			done
+		}
+		#menu_players function
+		menu_players		
+		
+		Repeat_p(){
+			echo "*********-------------------------********************************"
+			echo -e "From 4 to 11, do you want to repeat it! ? (yes/no):"
+			read Program_Repeat
+		}
+		#repeat_p function
+		Repeat_p
+					
+	done
+	echo -e "\n\n*****************************************"
+
+else
+	exit
+fi
+fi
